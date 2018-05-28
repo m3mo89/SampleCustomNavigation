@@ -70,5 +70,17 @@ namespace SampleCustomNavigation.Droid.Renderers
 
             _searchView = MainActivity.ToolBar.Menu?.FindItem(Resource.Id.action_search)?.ActionView?.JavaCast<SearchView>();
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (Element != null)
+            {
+                Element.Disappearing -= OnAppearing;
+            }
+
+            MainActivity.ToolBar?.Menu?.RemoveItem(Resource.Menu.mainmenu);
+            base.Dispose(disposing);
+        }
+
     }
 }
