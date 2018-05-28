@@ -35,18 +35,6 @@ namespace SampleCustomNavigation.Droid.Renderers
             Element.Appearing += OnAppearing;
         }
 
-
-        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            base.OnElementPropertyChanged(sender, e);
-
-            if (e.PropertyName == nameof(NavigationPage.CurrentPage))
-            {
-            //    AddSearchToToolBar();
-                Element.Appearing += OnAppearing;
-            }
-        }
-
         public void OnAppearing(object sender, EventArgs e)
         {
             Device.BeginInvokeOnMainThread(async () =>
