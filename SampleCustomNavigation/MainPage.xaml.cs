@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SampleCustomNavigation.CustomRenderers;
 using Xamarin.Forms;
 
 namespace SampleCustomNavigation
@@ -14,9 +15,16 @@ namespace SampleCustomNavigation
             InitializeComponent();
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            ((CustomNavigationPage)Application.Current.MainPage).IsSearchEnabled = false;
+        }
+
         void Handle_Clicked(object sender, System.EventArgs e)
         {
-            App.Current.MainPage.Navigation.PushAsync(new MyPage());
+            Application.Current.MainPage.Navigation.PushAsync(new MyPage());
         }
     }
 }

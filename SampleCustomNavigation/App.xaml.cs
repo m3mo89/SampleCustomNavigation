@@ -8,14 +8,21 @@ namespace SampleCustomNavigation
 {
     public partial class App : Application
     {
+        public static INavigation AppNavigation { get; internal set; }
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = new CustomNavigationPage(new MainPage())
+            var navigationPage = new CustomNavigationPage(new MainPage())
             {
-                BarBackgroundColor = Color.Red
+                BarBackgroundColor = Color.Red,
+                IsSearchEnabled = true
             };
+
+            AppNavigation = navigationPage.Navigation;
+
+            Application.Current.MainPage = navigationPage;
         }
 
         protected override void OnStart()

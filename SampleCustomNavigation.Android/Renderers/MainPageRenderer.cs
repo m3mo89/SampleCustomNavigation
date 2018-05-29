@@ -9,7 +9,7 @@ using SampleCustomNavigation.Droid.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(MainPage), typeof(MainPageRenderer))]
+//[assembly: ExportRenderer(typeof(MainPage), typeof(MainPageRenderer))]
 namespace SampleCustomNavigation.Droid.Renderers
 {
     public class MainPageRenderer: PageRenderer

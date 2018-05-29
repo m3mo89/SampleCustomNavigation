@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using SampleCustomNavigation.CustomRenderers;
 using Xamarin.Forms;
 
 namespace SampleCustomNavigation
@@ -10,6 +10,15 @@ namespace SampleCustomNavigation
         public MyPage()
         {
             InitializeComponent();
+
+            ((CustomNavigationPage)Application.Current.MainPage).IsSearchEnabled = true;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+
         }
     }
 }
