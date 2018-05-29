@@ -33,16 +33,32 @@ namespace SampleCustomNavigation.Droid.Renderers
             AddSearchToToolBar();
 
             Element.Appearing += OnAppearing;
+            Element.Disappearing += OnDisappearing;
         }
 
         public void OnAppearing(object sender, EventArgs e)
         {
+            if (MainActivity.ToolBar.Menu?.FindItem(Resource.Id.action_search) != null) // if we are coming from the background, don't add another search view
+            {
+                return;
+            }
+
             Device.BeginInvokeOnMainThread(async () =>
             {
                 await Task.Delay(TimeSpan.FromMilliseconds(600));
 
                 AddSearchToToolBar();
             });
+        }
+
+        public void OnDisappearing(object sender, EventArgs e)
+        {
+            RemoveSearchFromToolbar();
+        }
+
+        private void RemoveSearchFromToolbar()
+        {
+            MainActivity.ToolBar?.Menu?.RemoveItem(Resource.Menu.mainmenu);
         }
 
         private void AddSearchToToolBar()
@@ -63,10 +79,11 @@ namespace SampleCustomNavigation.Droid.Renderers
         {
             if (Element != null)
             {
-                Element.Disappearing -= OnAppearing;
+                Element.Appearing -= OnAppearing;
+                Element.Disappearing -= OnDisappearing;
             }
 
-            MainActivity.ToolBar?.Menu?.RemoveItem(Resource.Menu.mainmenu);
+            RemoveSearchFromToolbar();
             base.Dispose(disposing);
         }
 
