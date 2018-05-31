@@ -43,11 +43,11 @@ namespace SampleCustomNavigation.Droid.CustomRenderers
                 _toolbar = (Toolbar)child;
 
                 //if the toolbar is not null and the handle is zero then update the toolbar
-                if (MainActivity.ToolBar == null || MainActivity.ToolBar?.Handle == IntPtr.Zero)
-                {
+                //if (MainActivity.ToolBar == null || MainActivity.ToolBar?.Handle == IntPtr.Zero)
+                //{
                     MainActivity.ToolBar = _toolbar;
                     MainActivity.ToolBar.SetBackgroundColor(Element.BarBackgroundColor.ToAndroid());
-                }
+                //}
             }
         }
 

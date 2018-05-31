@@ -13,14 +13,18 @@ namespace SampleCustomNavigation
         {
             InitializeComponent();
 
+            //For Simple Content Page
             //var navigationPage = new CustomNavigationPage(new MainPage())
             //{
             //    BarBackgroundColor = Color.Red
             //};
-
             //Application.Current.MainPage = navigationPage;
 
-            Application.Current.MainPage = new MasterMainPage();
+            //For Master Detail Page
+            //Application.Current.MainPage = new MasterMainPage();
+
+            //For Tabbed Page
+            Application.Current.MainPage = new TabbedMainPage();
         }
 
         protected override void OnStart()
