@@ -8,7 +8,7 @@ using Android.Text;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
-using SampleCustomNavigation;
+using SampleCustomNavigation.Views;
 using SampleCustomNavigation.Droid.Helpers;
 using SampleCustomNavigation.Droid.Renderers;
 using Xamarin.Forms;
@@ -117,8 +117,11 @@ namespace SampleCustomNavigation.Droid.Renderers
 
         private void RemoveSearchFromToolbar()
         {
-            MainActivity.ToolBar?.Menu?.RemoveItem(Resource.Id.action_search);
-            MainActivity.ToolBar?.Menu?.RemoveItem(Resource.Menu.mainmenu);
+            if (MainActivity.ToolBar?.Handle != IntPtr.Zero)
+            {
+                MainActivity.ToolBar?.Menu?.RemoveItem(Resource.Id.action_search);
+                MainActivity.ToolBar?.Menu?.RemoveItem(Resource.Menu.mainmenu);
+            }
         }
 
         private void AddSearchToToolBar()

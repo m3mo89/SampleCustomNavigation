@@ -21,10 +21,8 @@ namespace SampleCustomNavigation.Droid.CustomRenderers
 	public class CustomNavigationPageRenderer : NavigationPageRenderer 
     {
         private Toolbar _toolbar;
-        private SearchView _searchView;
         private bool _disposed;
         private static readonly FieldInfo _toolbarFieldInfo;
-        private CustomNavigationPage _customNavigationPage;
 
         public CustomNavigationPageRenderer(Context context):base(context)
         {
@@ -36,30 +34,6 @@ namespace SampleCustomNavigation.Droid.CustomRenderers
             _toolbarFieldInfo = typeof(NavigationPageRenderer).GetField("_toolbar", BindingFlags.NonPublic | BindingFlags.Instance);
         }
 
-        //protected override void OnElementChanged(ElementChangedEventArgs<NavigationPage> e)
-        //{
-        //    base.OnElementChanged(e);
-
-        //    if (e?.NewElement == null || e.OldElement != null)
-        //    {
-        //        return;
-        //    }
-
-        //    _customNavigationPage = (CustomNavigationPage) e.NewElement;
-
-        //    SetSearch();
-        //}
-
-        //protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
-        //{
-        //    base.OnElementPropertyChanged(sender, e);
-
-        //    if(e.PropertyName == CustomNavigationPage.CurrentPageProperty.PropertyName)
-        //    {
-        //        SetSearch();
-        //    }
-        //}
-
         public override void OnViewAdded(Android.Views.View child)
         {
             base.OnViewAdded(child);
@@ -67,45 +41,15 @@ namespace SampleCustomNavigation.Droid.CustomRenderers
             if (child.GetType() == typeof(Toolbar))
             {
                 _toolbar = (Toolbar)child;
-                if (MainActivity.ToolBar == null)
+
+                //if the toolbar is not null and the handle is zero then update the toolbar
+                if (MainActivity.ToolBar == null || MainActivity.ToolBar?.Handle == IntPtr.Zero)
                 {
                     MainActivity.ToolBar = _toolbar;
                     MainActivity.ToolBar.SetBackgroundColor(Element.BarBackgroundColor.ToAndroid());
                 }
             }
         }
-
-        //public void SetSearch()
-        //{
-        //    if (_customNavigationPage.IsSearchEnabled)
-        //    {
-        //        //if (MainActivity.ToolBar.Menu?.FindItem(Resource.Id.action_search) != null) // if we are coming from the background, don't add another search view
-        //        //{
-        //        //    return;
-        //        //}
-
-        //        Device.BeginInvokeOnMainThread(async () =>
-        //        {
-        //            await Task.Delay(TimeSpan.FromMilliseconds(400));
-
-        //            AddSearchToToolBar();
-        //        });
-        //    }
-        //}
-
-        //private void AddSearchToToolBar()
-        //{
-
-        //    if (MainActivity.ToolBar == null || Element == null)
-        //    {
-        //        return;
-        //    }
-
-        //    MainActivity.ToolBar.Title = Element.Title;
-        //    MainActivity.ToolBar.InflateMenu(Resource.Menu.mainmenu);
-
-        //    _searchView = MainActivity.ToolBar.Menu?.FindItem(Resource.Id.action_search)?.ActionView?.JavaCast<SearchView>();
-        //}
 
         protected override void Dispose(bool disposing)
         {
