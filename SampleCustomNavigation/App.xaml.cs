@@ -8,8 +8,6 @@ namespace SampleCustomNavigation
 {
     public partial class App : Application
     {
-        public static INavigation AppNavigation { get; internal set; }
-
         public App()
         {
             InitializeComponent();
@@ -17,10 +15,8 @@ namespace SampleCustomNavigation
             var navigationPage = new CustomNavigationPage(new MainPage())
             {
                 BarBackgroundColor = Color.Red,
-                IsSearchEnabled = true
+                //IsSearchEnabled=true
             };
-
-            AppNavigation = navigationPage.Navigation;
 
             Application.Current.MainPage = navigationPage;
         }

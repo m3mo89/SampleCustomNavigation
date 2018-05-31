@@ -36,32 +36,29 @@ namespace SampleCustomNavigation.Droid.CustomRenderers
             _toolbarFieldInfo = typeof(NavigationPageRenderer).GetField("_toolbar", BindingFlags.NonPublic | BindingFlags.Instance);
         }
 
-        protected override void OnElementChanged(ElementChangedEventArgs<NavigationPage> e)
-        {
-            base.OnElementChanged(e);
+        //protected override void OnElementChanged(ElementChangedEventArgs<NavigationPage> e)
+        //{
+        //    base.OnElementChanged(e);
 
-            if (e?.NewElement == null || e.OldElement != null)
-            {
-                return;
-            }
+        //    if (e?.NewElement == null || e.OldElement != null)
+        //    {
+        //        return;
+        //    }
 
-            _customNavigationPage = (CustomNavigationPage) e.NewElement;
+        //    _customNavigationPage = (CustomNavigationPage) e.NewElement;
 
-            SetSearch();
+        //    SetSearch();
+        //}
 
-            //Element.Appearing += OnAppearing;
-            //Element.Disappearing += OnDisappearing;
-        }
+        //protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
+        //{
+        //    base.OnElementPropertyChanged(sender, e);
 
-        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            base.OnElementPropertyChanged(sender, e);
-
-            if(e.PropertyName == CustomNavigationPage.CurrentPageProperty.PropertyName)
-            {
-                SetSearch();
-            }
-        }
+        //    if(e.PropertyName == CustomNavigationPage.CurrentPageProperty.PropertyName)
+        //    {
+        //        SetSearch();
+        //    }
+        //}
 
         public override void OnViewAdded(Android.Views.View child)
         {
@@ -78,37 +75,37 @@ namespace SampleCustomNavigation.Droid.CustomRenderers
             }
         }
 
-        public void SetSearch()
-        {
-            if (_customNavigationPage.IsSearchEnabled)
-            {
-                //if (MainActivity.ToolBar.Menu?.FindItem(Resource.Id.action_search) != null) // if we are coming from the background, don't add another search view
-                //{
-                //    return;
-                //}
+        //public void SetSearch()
+        //{
+        //    if (_customNavigationPage.IsSearchEnabled)
+        //    {
+        //        //if (MainActivity.ToolBar.Menu?.FindItem(Resource.Id.action_search) != null) // if we are coming from the background, don't add another search view
+        //        //{
+        //        //    return;
+        //        //}
 
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await Task.Delay(TimeSpan.FromMilliseconds(400));
+        //        Device.BeginInvokeOnMainThread(async () =>
+        //        {
+        //            await Task.Delay(TimeSpan.FromMilliseconds(400));
 
-                    AddSearchToToolBar();
-                });
-            }
-        }
+        //            AddSearchToToolBar();
+        //        });
+        //    }
+        //}
 
-        private void AddSearchToToolBar()
-        {
+        //private void AddSearchToToolBar()
+        //{
 
-            if (MainActivity.ToolBar == null || Element == null)
-            {
-                return;
-            }
+        //    if (MainActivity.ToolBar == null || Element == null)
+        //    {
+        //        return;
+        //    }
 
-            MainActivity.ToolBar.Title = Element.Title;
-            MainActivity.ToolBar.InflateMenu(Resource.Menu.mainmenu);
+        //    MainActivity.ToolBar.Title = Element.Title;
+        //    MainActivity.ToolBar.InflateMenu(Resource.Menu.mainmenu);
 
-            _searchView = MainActivity.ToolBar.Menu?.FindItem(Resource.Id.action_search)?.ActionView?.JavaCast<SearchView>();
-        }
+        //    _searchView = MainActivity.ToolBar.Menu?.FindItem(Resource.Id.action_search)?.ActionView?.JavaCast<SearchView>();
+        //}
 
         protected override void Dispose(bool disposing)
         {
@@ -116,12 +113,6 @@ namespace SampleCustomNavigation.Droid.CustomRenderers
             {
                 _disposed = true;
             }
-
-            //if (Element != null)
-            //{
-            //    Element.Appearing -= OnAppearing;
-            //    //Element.Disappearing -= OnDisappearing;
-            //}
 
             base.Dispose(disposing);
         }
