@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" 
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                  xmlns:local="clr-namespace:SampleCustomNavigation.Views"
+                  xmlns:navigation="clr-namespace:SampleCustomNavigation.CustomRenderers"
+                  x:Class="SampleCustomNavigation.Views.MasterMainPage">
+  <MasterDetailPage.Master>
+    <local:MasterPage x:Name="masterPage" />
+  </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <navigation:CustomNavigationPage BarBackgroundColor="Red">
+            <x:Arguments>
+                <local:MainPage />
+            </x:Arguments>
+        </navigation:CustomNavigationPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>
