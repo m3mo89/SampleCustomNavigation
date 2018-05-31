@@ -1,5 +1,6 @@
 using System;
 using SampleCustomNavigation.CustomRenderers;
+using SampleCustomNavigation.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,13 +13,14 @@ namespace SampleCustomNavigation
         {
             InitializeComponent();
 
-            var navigationPage = new CustomNavigationPage(new MainPage())
-            {
-                BarBackgroundColor = Color.Red,
-                //IsSearchEnabled=true
-            };
+            //var navigationPage = new CustomNavigationPage(new MainPage())
+            //{
+            //    BarBackgroundColor = Color.Red
+            //};
 
-            Application.Current.MainPage = navigationPage;
+            //Application.Current.MainPage = navigationPage;
+
+            Application.Current.MainPage = new MasterMainPage();
         }
 
         protected override void OnStart()
