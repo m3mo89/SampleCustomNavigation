@@ -15,6 +15,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)BasePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -26,6 +30,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)CustomRenderers\CustomNavigationPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MyPage.xaml.cs">
       <DependentUpon>MyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)BasePage.xaml.cs">
+      <DependentUpon>BasePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
