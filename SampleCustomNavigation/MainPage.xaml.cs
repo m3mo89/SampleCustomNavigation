@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace SampleCustomNavigation
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage : ContentPage
+    public partial class MainPage : BasePage
     {
         public MainPage()
         {

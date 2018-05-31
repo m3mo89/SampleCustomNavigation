@@ -1,5 +1,10 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SampleCustomNavigation.MyPage">
-    <ContentPage.Content>
-    </ContentPage.Content>
-</ContentPage>
+<?xml version="1.0" encoding="UTF-8"?>
+<local:BasePage  xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:SampleCustomNavigation" x:Class="SampleCustomNavigation.MyPage"
+                 IsSearchEnabled="true" SearchExpandedBackgroundColor="Blue">
+    <local:BasePage.Content>
+        <StackLayout>
+        <!-- Place new controls here -->
+        <Label Text="Another page" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+    </StackLayout>
+    </local:BasePage.Content>
+</local:BasePage >
