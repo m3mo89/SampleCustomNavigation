@@ -57,6 +57,8 @@ namespace SampleCustomNavigation.Droid.Renderers
         {
             base.OnViewAdded(child);
 
+            if (MainActivity.ToolBar == null)
+                return;
 
             MainActivity.ToolBar.MenuItemClick += OnMenuItemClick;
 
@@ -95,13 +97,6 @@ namespace SampleCustomNavigation.Droid.Renderers
 
         public void OnAppearing(object sender, EventArgs e)
         {
-            MainActivity.ToolBar.BringToFront();
-
-            if (MainActivity.ToolBar.Menu?.FindItem(Resource.Id.action_search) != null) // if we are coming from the background, don't add another search view
-            {
-                return;
-            }
-
             Device.BeginInvokeOnMainThread(async () =>
             {
                 await Task.Delay(TimeSpan.FromMilliseconds(300));
@@ -128,6 +123,13 @@ namespace SampleCustomNavigation.Droid.Renderers
         {
 
             if (MainActivity.ToolBar == null || Element == null)
+            {
+                return;
+            }
+
+            MainActivity.ToolBar.BringToFront();
+
+            if (MainActivity.ToolBar.Menu?.FindItem(Resource.Id.action_search) != null) // if we are coming from the background, don't add another search view
             {
                 return;
             }

@@ -3,7 +3,7 @@
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
                  xmlns:local="clr-namespace:SampleCustomNavigation.Views"
                  x:Class="SampleCustomNavigation.Views.AnotherPage"
-                 IsSearchEnabled="false" SearchExpandedBackgroundColor="Purple">
+                 IsSearchEnabled="true" SearchExpandedBackgroundColor="Purple">
     <local:BasePage.Content>
         <StackLayout>
             <Label Text="Another page: Data goes here" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />

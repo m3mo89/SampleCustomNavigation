@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
             xmlns:local="clr-namespace:SampleCustomNavigation.Views"  xmlns:navigation="clr-namespace:SampleCustomNavigation.CustomRenderers" x:Class="SampleCustomNavigation.Views.TabbedMainPage">
-    <navigation:CustomNavigationPage Title="Main" BarBackgroundColor="Blue">
-        <x:Arguments>
-            <local:MainPage />
-        </x:Arguments>
-    </navigation:CustomNavigationPage>
-    <navigation:CustomNavigationPage Title="Another" BarBackgroundColor="Blue">
-        <x:Arguments>
-            <local:AnotherPage />
-        </x:Arguments>
-    </navigation:CustomNavigationPage>
-    <navigation:CustomNavigationPage Title="My Page" BarBackgroundColor="Blue">
-        <x:Arguments>
-            <local:MyPage />
-        </x:Arguments>
-    </navigation:CustomNavigationPage>
+            <local:MainPage Title="Main"/>
+            <local:AnotherPage Title="Another"/>
+            <local:MyPage Title="MyPage"/>
 </TabbedPage>

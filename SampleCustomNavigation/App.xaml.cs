@@ -24,7 +24,10 @@ namespace SampleCustomNavigation
             //Application.Current.MainPage = new MasterMainPage();
 
             //For Tabbed Page
-            Application.Current.MainPage = new TabbedMainPage();
+            Application.Current.MainPage = new CustomNavigationPage(new TabbedMainPage())
+            {
+                BarBackgroundColor = Color.Red
+            };
         }
 
         protected override void OnStart()
