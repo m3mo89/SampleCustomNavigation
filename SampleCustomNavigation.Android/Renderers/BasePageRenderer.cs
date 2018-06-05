@@ -60,8 +60,6 @@ namespace SampleCustomNavigation.Droid.Renderers
             if (MainActivity.ToolBar == null)
                 return;
 
-            MainActivity.ToolBar.MenuItemClick += OnMenuItemClick;
-
             _originalToolbarBackground = ((Android.Graphics.Drawables.ColorDrawable)MainActivity.ToolBar.Background).Color;
         }
 
@@ -137,7 +135,9 @@ namespace SampleCustomNavigation.Droid.Renderers
             MainActivity.ToolBar.Title = Element.Title;
             MainActivity.ToolBar.InflateMenu(Resource.Menu.mainmenu);
 
-            _searchView = MainActivity.ToolBar.Menu?.FindItem(Resource.Id.action_search)?.ActionView?.JavaCast<SearchView>();
+            var item = MainActivity.ToolBar.Menu?.FindItem(Resource.Id.action_search);
+
+            _searchView = item?.ActionView?.JavaCast<SearchView>();
 
             if (_searchView == null)
             {
@@ -167,6 +167,16 @@ namespace SampleCustomNavigation.Droid.Renderers
                 _textView.FocusChange += OnFocusChangeHandler;
                 _textView.Click += OnClickHandler;
             }
+
+            if (_menuActionExpandListener == null)
+            {
+                _menuActionExpandListener = new MenuActionExpandListener();
+            }
+
+            _menuActionExpandListener.MenuItemCollaspe += OnMenuItemCollaspe;
+            _menuActionExpandListener.MenuItemActionExpand += OnMenuItemActionExpand;
+
+            Android.Support.V4.View.MenuItemCompat.SetOnActionExpandListener(item, _menuActionExpandListener);
 
             MainActivity.Instance.Window.SetSoftInputMode(SoftInput.AdjustNothing);
         }
@@ -225,32 +235,6 @@ namespace SampleCustomNavigation.Droid.Renderers
             int cursorColorResource = Resource.Drawable.lightcursor;
 
             JNIEnv.SetField(autoCompleteTextView.Handle, cursorDrawableResProperty, cursorColorResource);
-        }
-
-        private void OnMenuItemClick(object sender, Android.Support.V7.Widget.Toolbar.MenuItemClickEventArgs e)
-        {
-            if (e == null || e.Item == null)
-            {
-                return;
-            }
-
-            switch (e.Item.ItemId)
-            {
-                case Resource.Id.action_search:
-
-                    if (_menuActionExpandListener == null)
-                    {
-                        _menuActionExpandListener = new MenuActionExpandListener();
-                    }
-
-                    _menuActionExpandListener.MenuItemCollaspe += OnMenuItemCollaspe;
-                    _menuActionExpandListener.MenuItemActionExpand += OnMenuItemActionExpand;
-
-                    Android.Support.V4.View.MenuItemCompat.SetOnActionExpandListener(e.Item, _menuActionExpandListener);
-                    break;
-            }
-
-            e.Handled = true;
         }
 
         private void OnMenuItemCollaspe(object sender, MenuItemEventArg e)
