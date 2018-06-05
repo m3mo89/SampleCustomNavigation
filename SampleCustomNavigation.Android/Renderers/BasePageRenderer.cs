@@ -133,7 +133,15 @@ namespace SampleCustomNavigation.Droid.Renderers
             }
 
             MainActivity.ToolBar.BringToFront();
-            MainActivity.ToolBar.Title = Element.Title;
+
+            //if is tabbed page remove the title on the toolbar
+            if(Element.Parent.GetType().BaseType == typeof(TabbedPage))
+            {
+                MainActivity.ToolBar.Title = string.Empty;
+            }else
+            {
+                MainActivity.ToolBar.Title = Element.Title;
+            }
         }
 
         private void AddSearchToToolBar()
