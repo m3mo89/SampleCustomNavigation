@@ -9,6 +9,7 @@ namespace SampleCustomNavigation.ViewModel
     {
         private Color _searchExpandedBackground;
         private string _searchPlaceHolder;
+        private bool _isSearchEnabled;
 
         protected BaseViewModel()
         {
@@ -43,6 +44,22 @@ namespace SampleCustomNavigation.ViewModel
                 {
                     _searchPlaceHolder = value;
                     OnPropertyChanged(nameof(SearchPlaceHolder));
+                }
+            }
+        }
+
+        public bool IsSearchEnabled
+        {
+            get
+            {
+                return _isSearchEnabled;
+            }
+            set
+            {
+                if (_isSearchEnabled != value)
+                {
+                    _isSearchEnabled = value;
+                    OnPropertyChanged(nameof(IsSearchEnabled));
                 }
             }
         }

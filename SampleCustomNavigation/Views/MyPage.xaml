@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <local:BasePage  xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:SampleCustomNavigation.Views" x:Class="SampleCustomNavigation.Views.MyPage"
-                 IsSearchEnabled="true" SearchExpandedBackgroundColor="{Binding SearchExpandedBackground}" SearchPlaceHolderText="{Binding SearchPlaceHolder}" SearchCommand="{Binding OnSearchCommand}" SearchText="{Binding SearchText, Mode=TwoWay}">
+                 IsSearchEnabled="{Binding IsSearchEnabled}" SearchExpandedBackgroundColor="{Binding SearchExpandedBackground}" SearchPlaceHolderText="{Binding SearchPlaceHolder}" SearchCommand="{Binding OnSearchCommand}" SearchText="{Binding SearchText, Mode=TwoWay}">
     <local:BasePage.Content>
         <StackLayout>
             <!-- Place new controls here -->

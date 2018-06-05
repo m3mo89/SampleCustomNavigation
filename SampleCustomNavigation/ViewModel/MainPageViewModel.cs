@@ -18,6 +18,7 @@ namespace SampleCustomNavigation.ViewModel
 
         public MainPageViewModel()
         {
+            IsSearchEnabled = true;
             SearchPlaceHolder = "Search";
             SearchExpandedBackground = Color.Violet;
         }
