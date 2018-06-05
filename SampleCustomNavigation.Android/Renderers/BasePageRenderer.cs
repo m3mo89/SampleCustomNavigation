@@ -44,13 +44,10 @@ namespace SampleCustomNavigation.Droid.Renderers
 
             _basePage = (BasePage)e.NewElement;
 
-            if (_basePage.IsSearchEnabled)
-            {
-                AddSearchToToolBar();
+            SetSearchToToolbar();
 
-                Element.Appearing += OnAppearing;
-                Element.Disappearing += OnDisappearing;
-            }
+            Element.Appearing += OnAppearing;
+            Element.Disappearing += OnDisappearing;
         }
 
         public override void OnViewAdded(Android.Views.View child)
@@ -95,12 +92,8 @@ namespace SampleCustomNavigation.Droid.Renderers
 
         public void OnAppearing(object sender, EventArgs e)
         {
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                await Task.Delay(TimeSpan.FromMilliseconds(300));
-
-                AddSearchToToolBar();
-            });
+            SetSearchbarBackgroundColor(_originalToolbarBackground);
+            SetSearchToToolbar();
         }
 
         public void OnDisappearing(object sender, EventArgs e)
@@ -108,31 +101,49 @@ namespace SampleCustomNavigation.Droid.Renderers
             RemoveSearchFromToolbar();
         }
 
+        private void SetSearchToToolbar()
+        {
+            AddToolBar();
+
+            if (_basePage.IsSearchEnabled)
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Task.Delay(TimeSpan.FromMilliseconds(300));
+
+                    AddSearchToToolBar();
+                });
+            }
+        }
+
         private void RemoveSearchFromToolbar()
         {
-            if (MainActivity.ToolBar?.Handle != IntPtr.Zero)
+            if (MainActivity.ToolBar?.Handle != IntPtr.Zero && _basePage.IsSearchEnabled)
             {
                 MainActivity.ToolBar?.Menu?.RemoveItem(Resource.Id.action_search);
                 MainActivity.ToolBar?.Menu?.RemoveItem(Resource.Menu.mainmenu);
             }
         }
 
-        private void AddSearchToToolBar()
+        private void AddToolBar()
         {
-
             if (MainActivity.ToolBar == null || Element == null)
             {
                 return;
             }
 
             MainActivity.ToolBar.BringToFront();
+            MainActivity.ToolBar.Title = Element.Title;
+        }
+
+        private void AddSearchToToolBar()
+        {
 
             if (MainActivity.ToolBar.Menu?.FindItem(Resource.Id.action_search) != null) // if we are coming from the background, don't add another search view
             {
                 return;
             }
 
-            MainActivity.ToolBar.Title = Element.Title;
             MainActivity.ToolBar.InflateMenu(Resource.Menu.mainmenu);
 
             var item = MainActivity.ToolBar.Menu?.FindItem(Resource.Id.action_search);
@@ -203,7 +214,7 @@ namespace SampleCustomNavigation.Droid.Renderers
                 return;
             }
 
-            var searchPage = Element as BasePage;
+            BasePage searchPage = Element as BasePage;
 
             if (searchPage == null)
             {
@@ -217,7 +228,7 @@ namespace SampleCustomNavigation.Droid.Renderers
 
         private void OnQueryTextChange(object sender, SearchView.QueryTextChangeEventArgs e)
         {
-            var searchPage = Element as BasePage;
+            BasePage searchPage = Element as BasePage;
 
             if (searchPage == null)
             {
