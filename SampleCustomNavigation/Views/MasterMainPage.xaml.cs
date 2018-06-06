@@ -12,6 +12,9 @@ namespace SampleCustomNavigation.Views
         {
             InitializeComponent();
 
+            NavigationPage.SetHasNavigationBar(this, false);
+            NavigationPage.SetHasBackButton(this, false);
+
             masterPage.ListView.ItemSelected += OnItemSelected;
         }
 
