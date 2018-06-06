@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SampleCustomNavigation.Views.ItemDetailPage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Start" HorizontalOptions="StartAndExpand" Orientation="Vertical">
+            <Label Text="Status" LineBreakMode="WordWrap" Margin="10,10,10,0" TextColor="Red" FontSize="18" />
+            <Label Text="{Binding Title}" LineBreakMode="WordWrap" Margin="10,10,10,0" HorizontalTextAlignment="Start" TextColor="Red" FontSize="18" />
+            <Label Text="Description" LineBreakMode="WordWrap" Margin="10,10,10,0" TextColor="Red" FontSize="18" />
+            <Label Text="{Binding Description}" LineBreakMode="WordWrap" Margin="10,10,10,0" HorizontalTextAlignment="Start" TextColor="Red" FontSize="18" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

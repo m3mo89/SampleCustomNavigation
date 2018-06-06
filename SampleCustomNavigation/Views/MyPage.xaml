@@ -4,10 +4,10 @@
     <local:BasePage.Content>
         <StackLayout>
             <!-- Place new controls here -->
-            <Label Text="My page: Data goes here" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+            <Button Text="Navigate to Antoher Page" Command="{Binding OnNavigateCommand}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
 
             <StackLayout VerticalOptions="StartAndExpand" Padding="0,0,0,0">
-                <ListView ItemsSource="{Binding ItemList}" CachingStrategy="RecycleElement" HasUnevenRows="true" SeparatorVisibility="None">
+                <ListView SelectedItem="{Binding SelectedItem, Mode=TwoWay}" ItemsSource="{Binding ItemList}" CachingStrategy="RecycleElement" HasUnevenRows="true" SeparatorVisibility="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

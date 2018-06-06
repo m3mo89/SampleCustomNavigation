@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using SampleCustomNavigation.Data;
+using SampleCustomNavigation.Views;
 using Xamarin.Forms;
 
 namespace SampleCustomNavigation.ViewModel
@@ -11,6 +12,7 @@ namespace SampleCustomNavigation.ViewModel
     public class MyPageViewModel : BaseViewModel
     {
         private Command _searchCommand;
+        private Command _navigateCommand;
         private Item _selectedItem;
         private ObservableCollection<Item> _ItemList;
         private ObservableCollection<Item> _itemListSource;
@@ -53,6 +55,29 @@ namespace SampleCustomNavigation.ViewModel
                     _ItemList = value;
                     OnPropertyChanged();
                 }
+            }
+        }
+
+        public Item SelectedItem
+        {
+            get
+            {
+                return _selectedItem;
+            }
+            set
+            {
+                if (_selectedItem != value)
+                {
+                    _selectedItem = value;
+                    OnPropertyChanged();
+                }
+
+                if (_selectedItem == null)
+                {
+                    return;
+                }
+
+                SendToDetails(_selectedItem);
             }
         }
 
@@ -110,6 +135,14 @@ namespace SampleCustomNavigation.ViewModel
             }
         }
 
+        public Command OnNavigateCommand
+        {
+            get
+            {
+                return _navigateCommand ?? (_navigateCommand = new Command(async () => await ExecuteNavigateCommand()));
+            }
+        }
+
         private async Task ExecuteSearchCommand()
         {
             if (SearchText?.Length <= 0)
@@ -134,6 +167,16 @@ namespace SampleCustomNavigation.ViewModel
                     ItemList.Add(item);
                 }
             }
+        }
+
+        private async Task ExecuteNavigateCommand()
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new AnotherPage());
+        }
+
+        public void SendToDetails(Item item)
+        {
+            Application.Current.MainPage.Navigation.PushAsync(new ItemDetailPage(item));
         }
     }
 }

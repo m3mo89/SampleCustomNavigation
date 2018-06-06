@@ -6,7 +6,7 @@
         <Label Text="Welcome to Xamarin.Forms!" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
 
         <StackLayout VerticalOptions="StartAndExpand" Padding="0,0,0,0">
-            <ListView ItemsSource="{Binding ItemList}" CachingStrategy="RecycleElement" HasUnevenRows="true" SeparatorVisibility="None">
+            <ListView SelectedItem="{Binding SelectedItem, Mode=TwoWay}" ItemsSource="{Binding ItemList}" CachingStrategy="RecycleElement" HasUnevenRows="true" SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

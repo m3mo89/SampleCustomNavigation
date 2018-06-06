@@ -25,11 +25,6 @@ namespace SampleCustomNavigation.Views
             RequestItems();
         }
 
-        void Handle_Clicked(object sender, System.EventArgs e)
-        {
-            Navigation.PushAsync(new MyPage());
-        }
-
         private void RequestItems()
         {
             Task.Run(async delegate

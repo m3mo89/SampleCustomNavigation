@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using SampleCustomNavigation.Data;
+using SampleCustomNavigation.Views;
 using Xamarin.Forms;
 
 namespace SampleCustomNavigation.ViewModel
@@ -53,6 +54,29 @@ namespace SampleCustomNavigation.ViewModel
                     _ItemList = value;
                     OnPropertyChanged();
                 }
+            }
+        }
+
+        public Item SelectedItem
+        {
+            get
+            {
+                return _selectedItem;
+            }
+            set
+            {
+                if (_selectedItem != value)
+                {
+                    _selectedItem = value;
+                    OnPropertyChanged();
+                }
+
+                if (_selectedItem == null)
+                {
+                    return;
+                }
+
+                SendToDetails(_selectedItem);
             }
         }
 
@@ -134,6 +158,11 @@ namespace SampleCustomNavigation.ViewModel
                     ItemList.Add(item);
                 }
             }
+        }
+
+        public void SendToDetails(Item item)
+        {
+            Application.Current.MainPage.Navigation.PushAsync(new ItemDetailPage(item));
         }
     }
 }
